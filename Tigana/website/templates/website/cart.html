@@ -1,0 +1,36 @@
+<h3>Cart</h3>
+{% extends "website/base.html" %}
+
+{% block content %}
+
+{% if error_flag == 1%}
+<p>{{product.item_name}} only has {{product.item_qty}}. Please choose less than that.</p>
+{% endif %}
+
+
+<ul>
+{% for item in cart %}
+{% with product=item.product %}
+    <li>{{ product.item_name }} {{ item.quantity }} {{ product.item_price }}</li>
+    <li><form action="/website/cart/{{product.id}}" method="post">
+        {{ cart_product_form }}
+        {% csrf_token %}
+        <input type="hidden"  name="status" id="status" value="Add">
+        <input type="submit" value="Change Quantity">
+      </form></li>
+    <li><form action="/website/cart/{{product.id}}" method="post">
+        <input type="hidden"  name="status" id="status" value="Remove">
+        <input type="submit" value="Remove">
+        {% csrf_token %}
+    </form></li>
+{% endwith %}
+{% endfor %}
+
+{{ totalPrice }}
+
+</ul>
+<form action="/website/orderconfirmation" method="get">
+    <input type="submit" value="Confirm Order">
+</form>
+
+{% endblock %}

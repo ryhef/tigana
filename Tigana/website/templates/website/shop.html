@@ -1,0 +1,22 @@
+<h3>Shop</h3>
+{% extends "website/base.html" %}
+
+{% block content %}
+
+{% for item in items %}
+{% if item.item_qty != 0%}
+<ul>
+{% for image in images %}
+{% if image.item.pk == item.pk%}
+<li><a href="/website/shop/{{item.pk}}"><img src="{{ image.image_url.url }}" alt="{{image.image_name}}" width="350" height="400"></a></li>
+{% endif %}
+{% endfor %}
+<li>Name: {{item.item_name}}</li>
+<li>Description: {{item.item_text}}</li>
+<li>Price: {{item.item_price}}</li>
+<li>Qty: {{item.item_qty}}</li>
+</ul>
+{% endif %}
+{% endfor %}
+
+{% endblock %}

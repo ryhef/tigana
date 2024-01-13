@@ -1,0 +1,24 @@
+<h3>Shop detail</h3>
+{% extends "website/base.html" %}
+
+{% block content %}
+
+{% if error_flag == 1%}
+<p>{{item.item_name}} only has {{item.item_qty}}. Please choose less than that.</p>
+{% endif %}
+
+<ul>
+    {% for itemImage in itemImages %}
+    <li><img src="{{ itemImage.image_url.url }}" alt="{{itemImage.cow_name}}" width="250" height="300"></li>
+    {% endfor %}
+    <li>Name: {{item.item_name}}</li>
+    <li>Description: {{item.item_text}}</li>
+    <li>Price: {{item.item_price}}</li>
+    <form action="/website/shop/{{item.pk}}/" method="post">
+        {{ cart_product_form }}
+        {% csrf_token %}
+        <input type="submit" value="Add to cart">
+    </form>
+</ul>
+
+{% endblock %}
