@@ -134,11 +134,11 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Email Settings
-DEFAULT_FROM_EMAIL='Tigana@outlook.com'
-EMAIL_HOST='smtp-mail.outlook.com'
+DEFAULT_FROM_EMAIL=''
+EMAIL_HOST=''
 EMAIL_PORT=587
-EMAIL_HOST_USER='Tigana@outlook.com'
-EMAIL_HOST_PASSWORD='HN&qA7jTgeCZrm'
+EMAIL_HOST_USER=''
+EMAIL_HOST_PASSWORD=''
 EMAIL_USE_TLS=True
 
 #Cart Settings
